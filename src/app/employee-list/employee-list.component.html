@@ -1,0 +1,87 @@
+<h1>Employee List</h1>
+<br>
+<div class="container">
+<div class="row">
+  <input type="text" class="form-control" placeholder="Serach By Name" style="width:300px" [(ngModel)]="searchTerm"/>
+  <button class="btn btn-dark" routerLink="/add-new-employee" routerLinkActive="active" style="position:absolute;right:5%;">Add New Employee</button>
+</div>
+</div>
+<hr>
+<br>
+<table class="table">
+  <tr>
+      <th [class.active]="order === 'id'"
+      (click)="setOrder('id')">
+      ID <span [hidden]="reverse">▼</span
+        ><span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'name'"
+      (click)="setOrder('name')">
+      NAME
+      <span [hidden]="reverse">▼</span
+        ><span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'email'"
+      (click)="setOrder('email')">
+      EMAIL
+      <span [hidden]="reverse">▼</span>
+      <span [hidden]="!reverse">▲</span>
+    </th>
+      <th>Date Of Birth</th>
+      <th [class.active]="order === 'salary'"
+      (click)="setOrder('salary')">Salary
+      <span [hidden]="reverse">▼</span>
+      <span [hidden]="!reverse">▲</span>
+    </th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>View</th>
+  </tr>
+  <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm">
+      <td>{{emp.id}}</td>
+      <td>{{emp.name}}</td>
+      <td>{{emp.email}}</td>
+      <td>{{emp.dob | date:'dd/MM/yyyy'}}</td>
+      <td>{{emp.salary}}</td>
+      <td><button class="btn btn-primary btn-sm" (click)="onEdit(emp)">Edit</button></td>
+      <td><button class="btn btn-danger btn-sm" (click)="onDelete(emp)">Delete</button></td>
+      <td><button class="btn btn-success btn-sm" (click)="onView(emp)">View</button></td>
+  </tr>
+</table>
+<!--<div *ngIf="selectedEmployee">
+  <h2>{{selectedEmployee.name}} Details</h2>
+<div>
+  <label>name:
+    <input [(ngModel)]="selectedEmployee.name" placeholder="name"/>
+  </label>
+</div>
+</div>-->
+<!--<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let event of events">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{event.name}}</h5>
+          <p class="card-text">{{event.description}}</p>
+          <a href="#" class="btn btn-primary">Buy Tickets</a>
+        </div>
+        <div class="card-footer text-muted">
+          {{event.date | date:'shortDate'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Game</th>
+                        <th>Platform</th>
+                        <th>Release</th>
+                    </tr>
+                    <tr *ngFor="let game of games; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{game.game}}</td>
+                        <td>{{game.platform}}</td>
+                        <td>{{game.release}}</td>
+                    </tr>
+                </table>-->

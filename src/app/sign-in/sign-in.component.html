@@ -1,0 +1,61 @@
+<!--<div class="container  bg-primary text-white" style="margin-top: 5%;
+margin-bottom: 5%; padding:5%">
+  <h1 style="font-family:courier;">EMPLOYEE LOGIN</h1>
+  <h1 class="h3 mb-3 font-weight-normal" style="font-family:courier;">Please sign in</h1>
+  <div *ngIf="error" class="alert alert-danger" role="alert">{{ error }}</div>
+  <br>
+  <form #logInForm="ngForm" (ngSubmit)="loginUser()" >
+    <div class="form-group">
+      <label>Username or email</label>
+      <input type="email" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control" placeholder="Username or email" required="true" ngModel name="userName" [(ngModel)]="loginUserModel.email">
+      <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter Password" ngModel name="password"  required [(ngModel)]="loginUserModel.password">
+      <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+    </div>
+    <button [disabled]="logInForm.form.invalid" class="btn btn-dark" type="submit">LogIn</button>
+    <button class="btn btn-dark" style="margin-left: 5px;" routerLink="../sign-up" routerLinkActive="active">Register</button>
+  </form>
+  
+</div>-->
+
+<div class="py-5 ">
+  <div class="row">
+    <div class="col-md-6 mx-auto bg-primary text-white">
+      <span class="anchor" id="formLogin"></span>
+
+      <!-- form card login -->
+      <div class="card rounded-0 bg-primary text-white">
+        <div class="card-header">
+          <h1 style="font-family:courier;">EMPLOYEE LOGIN</h1>
+  <h1 class="h3 mb-3 font-weight-normal" style="font-family:courier;">Please sign in</h1>
+  <div *ngIf="error" class="alert alert-danger" role="alert">{{ error }}</div>
+  <br>
+        </div>
+        <div class="card-body">
+          <form #logInForm="ngForm" (ngSubmit)="loginUser()" class="form">
+            <div class="form-group">
+              <label>Username or email</label>
+              <input type="email" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control" placeholder="Username or email" required="true" ngModel name="userName" [(ngModel)]="loginUserModel.email">
+              <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter Password" ngModel name="password"  required [(ngModel)]="loginUserModel.password">
+              <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+            </div>
+            <button [disabled]="logInForm.form.invalid" class="btn btn-dark" type="submit">LogIn</button>
+            <button class="btn btn-dark" style="margin-left: 5px;" routerLink="../sign-up" routerLinkActive="active">Register</button>
+          </form>
+        </div>
+        <!--/card-block-->
+      </div>
+      <!-- /form card login -->
+
+    </div>
+
+
+  </div>
+</div>

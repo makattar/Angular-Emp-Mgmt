@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Emp-Mgmt"
+    }
+  },
+  "defaultProject": "Emp-Mgmt",
+  "cli": {
+    "analytics": false
+  }
 }

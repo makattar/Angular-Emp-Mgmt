@@ -1,0 +1,30 @@
+<h1 class="font-weight-light">Employee Details</h1>
+<br>
+<hr>
+<br>
+<div class="container" *ngIf="employeeToDisplay">
+
+
+<div class="card text-white bg-dark border-primary mb-3" >
+    <img src="" class="card-img-top" alt="">
+    <div class="card-body">
+      <h2 class="card-title">Hey It's {{employeeToDisplay.name}}</h2>
+      <h5 class="card-text">Details Are As Below</h5>
+    </div>
+    <ul class="list-group list-group-flush text-dark">
+      <li class="list-group-item"><h6>{{employeeToDisplay.name}}</h6></li>
+      <li class="list-group-item"><h6>Contact me on {{employeeToDisplay.email}}</h6></li>
+      <li class="list-group-item"><h6>My Date Of Birth is {{employeeToDisplay.dob | date:'dd/MM/yyyy'}}</h6></li>
+      <li class="list-group-item"><h6>Salary is of about {{employeeToDisplay.salary}} INR </h6></li>
+      <li class="list-group-item"><h6>My Contact no is {{employeeToDisplay.contactno}}</h6></li>
+      <li class="list-group-item"><h6>Works In {{employeeToDisplay.department}} department</h6></li>
+      <li class="list-group-item"><h6>Work As {{employeeToDisplay.jobtype}}</h6></li>
+      <li class="list-group-item"><h6>Date Of Joining is {{employeeToDisplay.doj | date:'dd/MM/yyyy'}}</h6></li>
+    </ul>
+    <div class="card-body">
+      <a href="#"  class="btn btn-primary" style="margin : 5px;">Gmail</a>
+      <a href="#"  class="btn btn-primary" style="margin : 5px;">LinkedIn</a>
+    </div>
+  </div>
+  <br>
+</div>
