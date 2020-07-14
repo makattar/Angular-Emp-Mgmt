@@ -8,6 +8,9 @@ import {ListToDispalyService} from '../list-to-dispaly.service';
 import {ListToEditService} from '../list-to-edit.service';
 import {DeleteEmpService} from '../deleteemp.service';
 import {LocationStrategy} from '@angular/common';
+import {DepartmentService} from '../department.service';
+import {JobtypeService} from '../jobtype.service';
+import {AuthorizationService} from '../authorization.service';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -20,14 +23,19 @@ export class EmployeeListComponent implements OnInit {
   sortedCollection: any[];
   searchTerm:string;
   selectedEmployee:Employee;
-  selectedEmployeeId:number
+  selectedEmployeeId:number;
+  userRole;
   constructor(private _empListService:EmplistService,
     private _router:Router,
     private orderPipe: OrderPipe,
     private _listToDisplayService:ListToDispalyService,
     private _listToEditService:ListToEditService,
-    private _deleteEmpService:DeleteEmpService
-    ,private location:LocationStrategy) {
+    private _deleteEmpService:DeleteEmpService,
+    private location:LocationStrategy,
+    private _deptService:DepartmentService,
+    private _jobtypeService:JobtypeService,
+    public _authorizationService:AuthorizationService
+    ) {
     this.sortedCollection = orderPipe.transform(this.empList, 'name');
     history.pushState(null,null,window.location.href);
     this.location.onPopState(()=>{
@@ -36,6 +44,7 @@ export class EmployeeListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    //Get employee list from server
     this._empListService.getEmpList().subscribe(
       res=>{this.empList=res
       console.log(res)
@@ -48,6 +57,15 @@ export class EmployeeListComponent implements OnInit {
         }
       }
     )
+    //Set department array in service 
+    this._deptService.setDeptList();
+    //Set jobtype array in service
+    this._jobtypeService.setJobtypeList();
+    //Dummy testing of token 
+     // this._authorizationService.decodetoken();
+     //Get Role Of user
+     this.userRole=this._authorizationService.getRole()
+    
   }
   setOrder(value: string) {
     if (this.order === value) {

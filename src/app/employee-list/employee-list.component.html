@@ -1,9 +1,10 @@
 <h1>Employee List</h1>
 <br>
+<div class="alert alert-primary">LOGGED IN AS {{this.userRole | uppercase}} EMPLOYEE</div>
 <div class="container">
 <div class="row">
   <input type="text" class="form-control" placeholder="Serach By Name" style="width:300px" [(ngModel)]="searchTerm"/>
-  <button class="btn btn-dark" routerLink="/add-new-employee" routerLinkActive="active" style="position:absolute;right:5%;">Add New Employee</button>
+  <button class="btn btn-dark" routerLink="/add-new-employee" routerLinkActive="active" style="position:absolute;right:5%;" *ngIf="this._authorizationService.hardisAuthorized()">Add New Employee</button>
 </div>
 </div>
 <hr>
@@ -33,8 +34,8 @@
       <span [hidden]="reverse">▼</span>
       <span [hidden]="!reverse">▲</span>
     </th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th *ngIf="this._authorizationService.hardisAuthorized()">Edit</th>
+    <th *ngIf="this._authorizationService.hardisAuthorized()">Delete</th>
     <th>View</th>
   </tr>
   <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm">
@@ -43,8 +44,8 @@
       <td>{{emp.email}}</td>
       <td>{{emp.dob | date:'dd/MM/yyyy'}}</td>
       <td>{{emp.salary}}</td>
-      <td><button class="btn btn-primary btn-sm" (click)="onEdit(emp)">Edit</button></td>
-      <td><button class="btn btn-danger btn-sm" (click)="onDelete(emp)">Delete</button></td>
+      <td *ngIf="this._authorizationService.hardisAuthorized()"><button class="btn btn-primary btn-sm" (click)="onEdit(emp)">Edit</button></td>
+      <td *ngIf="this._authorizationService.hardisAuthorized()"><button class="btn btn-danger btn-sm" (click)="onDelete(emp)">Delete</button></td>
       <td><button class="btn btn-success btn-sm" (click)="onView(emp)">View</button></td>
   </tr>
 </table>

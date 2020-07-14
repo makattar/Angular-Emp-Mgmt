@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "src/app/user";
-import {EnrollmentService} from 'src/app/enrollment.service'
-import {Router} from '@angular/router'
+import {EnrollmentService} from 'src/app/enrollment.service';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
- departments=["HR","Security","Management","Worker"];
+ departments=["Human Resource","Software Development","Security","Management","Networking"];
  departmentHasError=true;
  submitted=false;
  errorMessage="";
@@ -34,7 +35,7 @@ export class SignUpComponent implements OnInit {
           this._router.navigate(['/sign-in'])
       },
         //error=>console.log('Error!',error)
-        error=>this.errorMessage=error.statusText
+        error=>{this.errorMessage=error.statusText}
       )
   }
 

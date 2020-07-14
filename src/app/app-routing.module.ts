@@ -12,6 +12,9 @@ import { EditEmployeeDetailsComponent } from './edit-employee-details/edit-emplo
 import {AddNewEmployeeComponent} from './add-new-employee/add-new-employee.component';
 import {SuccessComponent} from './success/success.component';
 import {FailedComponent} from './failed/failed.component';
+import {AccessDeniedComponent} from './access-denied/access-denied.component';
+import {AuthorizationGuard} from './authorization.guard';
+
 const routes: Routes = [
   {path:'sign-in',
   component:SignInComponent,
@@ -19,6 +22,7 @@ const routes: Routes = [
 },
   {path:'home',component:HomeComponent},
   {path:'sign-up',component:SignUpComponent},
+  {path:'accessdenied',component:AccessDeniedComponent},
   {
     path:'employee-list',
     component:EmployeeListComponent,
@@ -28,8 +32,12 @@ const routes: Routes = [
   {path:'failed',component:FailedComponent},
   {path:'',redirectTo:'/sign-in',pathMatch:'full'},
   {path:'emp-details',component:DisplayEmployeeDetailsComponent,canActivate:[AuthGuard]},
-  {path:'edit-employee',component:EditEmployeeDetailsComponent,canActivate:[AuthGuard]},
-  {path:'add-new-employee',component:AddNewEmployeeComponent,canActivate:[AuthGuard]},
+  {path:'edit-employee',component:EditEmployeeDetailsComponent,canActivate:[AuthGuard,AuthorizationGuard],data: {
+    allowedRoles: ['Human Resource']
+  }},
+  {path:'add-new-employee',component:AddNewEmployeeComponent,canActivate:[AuthGuard,AuthorizationGuard],data: {
+    allowedRoles: ['Human Resource']
+  }},
   {path:'**',component:PageNotFoundComponent}
 ];
 

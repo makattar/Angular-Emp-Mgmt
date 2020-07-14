@@ -5,6 +5,8 @@ import { DatePipe } from '@angular/common';
 import {UpdateEmpService} from '../updateemp.service';
 import {Router} from '@angular/router';
 import {LocationStrategy} from '@angular/common';
+import {JobtypeService} from '../jobtype.service';
+import {DepartmentService} from '../department.service';
 
 @Component({
   selector: 'app-edit-employee-details',
@@ -15,11 +17,11 @@ export class EditEmployeeDetailsComponent implements OnInit {
   employeeToEdit:Employee;
   //employeeBirthDate:Date;
   //Employee  select Component
-  departments=["Human Resource","Software Developement","Management","Networking","Security"];
-  jobTypesArray=["part-time","full-time"];
+  departments=this._departmentService.getNormalDept();//["Human Resource","Software Developement","Management","Networking","Security"];
+  jobTypesArray=this._jobtypeService.getNormalJobtype();//["part-time","full-time"];
   departmentHasError=true;
   jobTypeHasError=true; 
-  constructor(private _listToEditService:ListToEditService,private _updateEmpService:UpdateEmpService,private _router:Router,private location:LocationStrategy) { 
+  constructor(private _listToEditService:ListToEditService,private _updateEmpService:UpdateEmpService,private _router:Router,private location:LocationStrategy,private _jobtypeService:JobtypeService,private _departmentService:DepartmentService) { 
     history.pushState(null,null,window.location.href);
     this.location.onPopState(()=>{
       history.pushState(null,null,window.location.href);

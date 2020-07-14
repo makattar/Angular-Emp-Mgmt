@@ -23,6 +23,8 @@ import { EditEmployeeDetailsComponent } from './edit-employee-details/edit-emplo
 import { AddNewEmployeeComponent } from './add-new-employee/add-new-employee.component';
 import { SuccessComponent } from './success/success.component';
 import { FailedComponent } from './failed/failed.component';
+import {AuthorizationService} from './authorization.service';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { FailedComponent } from './failed/failed.component';
     EditEmployeeDetailsComponent,
     AddNewEmployeeComponent,
     SuccessComponent,
-    FailedComponent
+    FailedComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { FailedComponent } from './failed/failed.component';
     HttpClientModule,
     OrderModule
   ],
-  providers: [EnrollmentService,EmplistService,ListToDispalyService,AuthGuard,ListToEditService,SigninGuardGuard,
+  providers: [EnrollmentService,EmplistService,ListToDispalyService,AuthorizationService,AuthGuard,ListToEditService,SigninGuardGuard,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,

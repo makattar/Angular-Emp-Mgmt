@@ -3,6 +3,8 @@ import {Employee} from '../shared/employee.model';
 import {AddEmpService} from '../addemp.service';
 import { HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
+import {JobtypeService} from '../jobtype.service';
+import {DepartmentService} from '../department.service';
 
 @Component({
   selector: 'app-add-new-employee',
@@ -12,14 +14,16 @@ import {Router} from '@angular/router';
 export class AddNewEmployeeComponent implements OnInit {
   employeeToAdd:Employee;
   Status={}
-  departments=["Human Resource","Software Developement","Management","Networking","Security"];
-  jobTypesArray=["part-time","full-time"];
+  departments//=this._departmentService.getNormalDept();//["Human Resource","Software Developement","Management","Networking","Security"];
+  jobTypesArray//=this._jobtypeService.getNormalJobtype();//["part-time","full-time"];
   departmentHasError=true;
   jobTypeHasError=true;
-  constructor(private _addEmpService:AddEmpService,private _router:Router) { }
+  constructor(private _addEmpService:AddEmpService,private _router:Router,private _jobtypeService:JobtypeService,private _departmentService:DepartmentService) { }
 
   ngOnInit(): void {
     this.employeeToAdd=new Employee(null,null,null,null,null,null,"default","default",null);
+    this.departments=this._departmentService.getNormalDept();
+    this.jobTypesArray=this._jobtypeService.getNormalJobtype();
   }
   confirmAdd(){
     this._addEmpService.SetEmployeeToAdd(this.employeeToAdd);
