@@ -7,7 +7,8 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UpdateEmpService {
-  private _empListUrl="http://localhost:3000/api/updateempToDatabase";
+  //private _empListUrl="http://localhost:3000/api/updateempToDatabase";
+  private _empListUrl="http://localhost:3000/employees/updateempToDatabase";
   private employeeToEdit:Employee
   constructor(private http:HttpClient) { }
   postnewemp(){

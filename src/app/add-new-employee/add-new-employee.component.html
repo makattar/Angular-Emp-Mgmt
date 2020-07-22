@@ -2,7 +2,7 @@
 <h1>Add New Employee</h1>
 <hr>
 <div class="container">
-    <form #addForm="ngForm"  (ngSubmit)="confirmAdd()" novalidate>
+    <form #addForm="ngForm"  (ngSubmit)="confirmAdd()"  class="form" enctype="multipart/form-data">
             
         <div class="form-group">
           <label>Name</label>
@@ -64,8 +64,12 @@
             <input type="date"  #DOJ="ngModel" class="form-control" [class.is-invalid]="DOJ.invalid && DOJ.touched" placeholder="Enter Date OF Joining" ngModel name="DOJ" [(ngModel)]="employeeToAdd.doj"  required>
             <small class="text-danger" [class.d-none]="DOJ.valid || DOJ.untouched">Date Of Joining is required</small>
         </div>
+        <div class="form-group">
+          <input type="file" #img="ngModel"  ngModel [class.is-invalid]="img.invalid && img.touched" name="img" (change)="onFileSelected($event)" required>
+          <small class="text-danger" *ngIf="filetest">File type not supported</small>
+        </div>
           
-        <button [disabled]="addForm.form.invalid" class="btn btn-primary" type="submit">Confirm Add</button>
+        <button  [disabled]="addForm.form.invalid || filetest" class="btn btn-primary" type="submit">Confirm Add</button>
   
       </form>
 </div>

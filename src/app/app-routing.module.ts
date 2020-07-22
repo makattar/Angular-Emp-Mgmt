@@ -14,12 +14,13 @@ import {SuccessComponent} from './success/success.component';
 import {FailedComponent} from './failed/failed.component';
 import {AccessDeniedComponent} from './access-denied/access-denied.component';
 import {AuthorizationGuard} from './authorization.guard';
-
+import {RimgtestComponent} from './rimgtest/rimgtest.component';
 const routes: Routes = [
   {path:'sign-in',
   component:SignInComponent,
   canActivate:[SigninGuardGuard]
 },
+//Testing image fetch {path:'imgr',component:RimgtestComponent},
   {path:'home',component:HomeComponent},
   {path:'sign-up',component:SignUpComponent},
   {path:'accessdenied',component:AccessDeniedComponent},

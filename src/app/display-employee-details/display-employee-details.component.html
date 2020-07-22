@@ -6,7 +6,14 @@
 
 
 <div class="card text-white bg-dark border-primary mb-3" >
-    <img src="" class="card-img-top" alt="">
+  
+  <div *ngIf="!retrievedImage" class="d-flex align-items-center">
+    <strong>Loading Image....</strong>
+    <div  class="spinner-border ml-auto" aria-hidden="true"></div>
+  </div>
+
+  
+    <img *ngIf="retrievedImage" [src]="retrievedImage"  onerror="this.src='assets/beach.jpg'" height="200" width="200">
     <div class="card-body">
       <h2 class="card-title">Hey It's {{employeeToDisplay.name}}</h2>
       <h5 class="card-text">Details Are As Below</h5>

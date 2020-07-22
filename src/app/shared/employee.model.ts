@@ -15,6 +15,7 @@ export class Employee {
         public contactno:number,
         public department:string,
         public jobtype:string,
-        public doj:Date
+        public doj:Date,
+        public img:File
         ){}
 }

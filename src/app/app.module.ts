@@ -25,6 +25,7 @@ import { SuccessComponent } from './success/success.component';
 import { FailedComponent } from './failed/failed.component';
 import {AuthorizationService} from './authorization.service';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { RimgtestComponent } from './rimgtest/rimgtest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     AddNewEmployeeComponent,
     SuccessComponent,
     FailedComponent,
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    RimgtestComponent
   ],
   imports: [
     BrowserModule,
