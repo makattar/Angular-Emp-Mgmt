@@ -8,7 +8,8 @@ export class DepartmentService {
   departments:string[]=[]
   departmentsWithoutNull:string[]=[] 
   reenter=true
-  private _departmentListUrl="http://localhost:3000/api/dept-list";
+  //private _departmentListUrl="http://localhost:3000/api/dept-list";
+  private _departmentListUrl="https://mydbpg.herokuapp.com/api/dept-list";
   constructor(private http:HttpClient) { }
   getDeptList(){
     return this.departments;

@@ -8,7 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AddEmpService {
   //private _empListUrl="http://localhost:3000/api/addempToDatabase";
-  private _empListUrl="http://localhost:3000/employees/addempToDatabase";
+  //private _empListUrl="http://localhost:3000/employees/addempToDatabase";
+  private _empListUrl="https://mydbpg.herokuapp.com/employees/addempToDatabase";
   //private _empListUrl="http://localhost:3000/upload";
   private employeeToAdd:Employee
   private img:File

@@ -8,7 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class DeleteEmpService {
   //private _empListUrl="http://localhost:3000/api/delempFromDatabase";
-  private _empListUrl="http://localhost:3000/employees/delempFromDatabase";
+  //private _empListUrl="http://localhost:3000/employees/delempFromDatabase";
+  private _empListUrl="https://mydbpg.herokuapp.com/employees/delempFromDatabase";
   private employeeToSend:Employee
   constructor(private http:HttpClient) { }
   deleteEmpById(){

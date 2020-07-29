@@ -16,7 +16,7 @@ export class DisplayEmployeeDetailsComponent implements OnInit {
   constructor(private _listToDisplayService:ListToDispalyService,private httpClient:HttpClient,private _domSanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
-    this._getImageurl="http://localhost:3000/employees/getEmpImg";
+    this._getImageurl="https://mydbpg.herokuapp.com/employees/getEmpImg";
     this.employeeToDisplay=this._listToDisplayService.getDetail();
     console.log(this.employeeToDisplay);
     console.log(this.employeeToDisplay.id);

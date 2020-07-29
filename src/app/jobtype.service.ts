@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class JobtypeService {
-  private _jobtypeListUrl="http://localhost:3000/api/jobtype-list";
+  //private _jobtypeListUrl="http://localhost:3000/api/jobtype-list";
+  private _jobtypeListUrl="https://mydbpg.herokuapp.com/api/jobtype-list";
   jobtypes:string[]=[]
   jobtypesWithoutNull:string[]=[]
   reenter=true

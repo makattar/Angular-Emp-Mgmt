@@ -10,9 +10,11 @@ import {Router} from '@angular/router';
 export class EnrollmentService {
   
   //_enrollurl = 'http://localhost:3000/api/enroll';
-  _enrollurl = 'http://localhost:3000/users/registerUser';
+  //_enrollurl = 'http://localhost:3000/users/registerUser';
+  _enrollurl = 'https://mydbpg.herokuapp.com/users/registerUser';
   //_loginUrl="http://localhost:3000/api/loginUser";
-  _loginUrl="http://localhost:3000/users/loginUser";
+  //_loginUrl="http://localhost:3000/users/loginUser";
+  _loginUrl="https://mydbpg.herokuapp.com/users/loginUser";
   constructor(private _http: HttpClient,private _router :Router) { }
 
   enroll (user: User) {
