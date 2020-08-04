@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {EnrollmentService} from './enrollment.service';
 import {AuthorizationService} from './authorization.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,5 +9,6 @@ import {AuthorizationService} from './authorization.service';
 })
 export class AppComponent {
   title = 'Emp-Mgmt';
+  public navbarCollapsed = true;
   constructor(public  _authService:EnrollmentService,public _authorizationSevice:AuthorizationService){}
 }

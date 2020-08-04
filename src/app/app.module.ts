@@ -26,6 +26,7 @@ import { FailedComponent } from './failed/failed.component';
 import {AuthorizationService} from './authorization.service';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { RimgtestComponent } from './rimgtest/rimgtest.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { RimgtestComponent } from './rimgtest/rimgtest.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OrderModule
+    OrderModule,
+    NgxPaginationModule
   ],
   providers: [EnrollmentService,EmplistService,ListToDispalyService,AuthorizationService,AuthGuard,ListToEditService,SigninGuardGuard,
     {

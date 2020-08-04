@@ -38,7 +38,10 @@
     <th *ngIf="this._authorizationService.hardisAuthorized()">Delete</th>
     <th>View</th>
   </tr>
-  <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm">
+  <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm | paginate:{id:'listing_pagination',
+          itemsPerPage:10,
+        currentPage:page,
+      totalItems:totalRecords}">
       <td>{{emp.id}}</td>
       <td>{{emp.name}}</td>
       <td>{{emp.email}}</td>
@@ -49,6 +52,11 @@
       <td><button class="btn btn-success btn-sm" (click)="onView(emp)">View</button></td>
   </tr>
 </table>
+<hr>
+<div>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>
+<hr>
 <!--<div *ngIf="selectedEmployee">
   <h2>{{selectedEmployee.name}} Details</h2>
 <div>

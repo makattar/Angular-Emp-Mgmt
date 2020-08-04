@@ -18,6 +18,8 @@ import {AuthorizationService} from '../authorization.service';
 })
 export class EmployeeListComponent implements OnInit {
   order:string='name';
+  totalRecords:string;
+  page:number=1;
   empList = [];
   reverse: boolean = false;
   sortedCollection: any[];
@@ -48,6 +50,9 @@ export class EmployeeListComponent implements OnInit {
     this._empListService.getEmpList().subscribe(
       res=>{this.empList=res
       console.log(res)
+      //console.log(res.length)
+      this.totalRecords=res.length
+      //console.log(this.totalRecords)
     },
       err=>{
         if(err instanceof HttpErrorResponse){
