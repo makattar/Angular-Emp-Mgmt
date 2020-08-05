@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   selectedEmployee:Employee;
   selectedEmployeeId:number;
   userRole;
-  pager = {};
+  pager = {pages:null,currentPage:null,totalPages:null};
   pageOfItems = [];
   constructor(private _empListService:EmplistService,
     private http: HttpClient,
