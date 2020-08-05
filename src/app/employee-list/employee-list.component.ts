@@ -11,6 +11,8 @@ import {LocationStrategy} from '@angular/common';
 import {DepartmentService} from '../department.service';
 import {JobtypeService} from '../jobtype.service';
 import {AuthorizationService} from '../authorization.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -27,7 +29,10 @@ export class EmployeeListComponent implements OnInit {
   selectedEmployee:Employee;
   selectedEmployeeId:number;
   userRole;
+  pager = {};
+  pageOfItems = [];
   constructor(private _empListService:EmplistService,
+    private http: HttpClient,
     private _router:Router,
     private orderPipe: OrderPipe,
     private _listToDisplayService:ListToDispalyService,
@@ -36,7 +41,8 @@ export class EmployeeListComponent implements OnInit {
     private location:LocationStrategy,
     private _deptService:DepartmentService,
     private _jobtypeService:JobtypeService,
-    public _authorizationService:AuthorizationService
+    public _authorizationService:AuthorizationService,
+    private route: ActivatedRoute
     ) {
     this.sortedCollection = orderPipe.transform(this.empList, 'name');
     history.pushState(null,null,window.location.href);
@@ -47,7 +53,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     //Get employee list from server
-    this._empListService.getEmpList().subscribe(
+    /*this._empListService.getEmpList().subscribe(
       res=>{this.empList=res
       console.log(res)
       //console.log(res.length)
@@ -61,7 +67,8 @@ export class EmployeeListComponent implements OnInit {
           }
         }
       }
-    )
+    )*/
+    this.route.queryParams.subscribe(x => this.loadPage(x.page || 1));
     //Set department array in service 
     this._deptService.setDeptList();
     //Set jobtype array in service
@@ -90,6 +97,22 @@ export class EmployeeListComponent implements OnInit {
     this._listToEditService.setDetail(this.selectedEmployee);
     this._router.navigate(['/edit-employee']);
   }
+  private loadPage(page) {
+    // get page of items from api
+    this._empListService.getEmpList(page).subscribe(data => {
+      this.pager = data.pager;
+      //this.pageOfItems = x.pageOfItems;
+      this.empList=data.pageOfItems;
+  },
+  err=>{
+    if(err instanceof HttpErrorResponse){
+      if(err.status===401){
+        this._router.navigate(['/sign-in'])
+      }
+    }
+  });
+
+}
   onDelete(employee:Employee){
     console.log("Delete button clicked , calling http request for delete from new service");
     this.selectedEmployee=employee;

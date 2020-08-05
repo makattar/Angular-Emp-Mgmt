@@ -38,10 +38,7 @@
     <th *ngIf="this._authorizationService.hardisAuthorized()">Delete</th>
     <th>View</th>
   </tr>
-  <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm | paginate:{id:'listing_pagination',
-          itemsPerPage:10,
-        currentPage:page,
-      totalItems:totalRecords}">
+  <tr *ngFor="let emp of empList | orderBy: order:reverse:true | employeeFilter:searchTerm ">
       <td>{{emp.id}}</td>
       <td>{{emp.name}}</td>
       <td>{{emp.email}}</td>
@@ -52,10 +49,27 @@
       <td><button class="btn btn-success btn-sm" (click)="onView(emp)">View</button></td>
   </tr>
 </table>
-<hr>
-<div>
-  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<div class="container">
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
+          <a [routerLink]="['../employee-list']" [queryParams]="{ page: 1 }" class="page-link">First</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
+          <a [routerLink]="['../employee-list']" [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Previous</a>
+      </li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+          <a [routerLink]="['../employee-list']" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">
+          <a [routerLink]="['../employee-list']" [queryParams]="{ page: pager.currentPage + 1 }" class="page-link">Next</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item last-item">
+          <a [routerLink]="['../employee-list']" [queryParams]="{ page: pager.totalPages }" class="page-link">Last</a>
+      </li>
+  </ul>
 </div>
+<hr>
+
 <hr>
 <!--<div *ngIf="selectedEmployee">
   <h2>{{selectedEmployee.name}} Details</h2>
@@ -64,7 +78,20 @@
     <input [(ngModel)]="selectedEmployee.name" placeholder="name"/>
   </label>
 </div>
-</div>-->
+</div>
+
+| paginate:{id:'listing_pagination',
+          itemsPerPage:10,
+        currentPage:page,
+      totalItems:totalRecords}
+
+after table
+<div>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>
+
+-->
+
 <!--<div class="row mt-5">
     <div class="col-md-4 mb-3" *ngFor="let event of events">
       <div class="card text-center">
