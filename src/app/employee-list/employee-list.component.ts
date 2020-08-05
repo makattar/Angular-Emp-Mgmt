@@ -100,6 +100,7 @@ export class EmployeeListComponent implements OnInit {
   private loadPage(page) {
     // get page of items from api
     this._empListService.getEmpList(page).subscribe(data => {
+      console.log(data.pageOfItems);
       this.pager = data.pager;
       //this.pageOfItems = x.pageOfItems;
       this.empList=data.pageOfItems;
