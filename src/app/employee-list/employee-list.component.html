@@ -48,6 +48,8 @@
       <td *ngIf="this._authorizationService.hardisAuthorized()"><button class="btn btn-danger btn-sm" (click)="onDelete(emp)">Delete</button></td>
       <td><button class="btn btn-success btn-sm" (click)="onView(emp)">View</button></td>
   </tr>
+  <tr *ngIf="!fetchingDone"><td>Fetching Data</td></tr>
+  <tr *ngIf="empList.length===0 && fetchingDone"><td>Nothing to Show</td></tr>
 </table>
 <div class="container">
   <ul *ngIf="pager.pages && pager.pages.length" class="pagination">

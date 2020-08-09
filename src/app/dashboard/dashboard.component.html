@@ -26,6 +26,28 @@
           [legend]="joinedChartLegend"
           [chartType]="joinedChartType"></canvas>
     </div>
+    <br>
+  <h2>Exited Employee List</h2>
+  <hr>
+  <table class="table">
+  <tr>
+      <th>
+      NAME 
+      </th>
+      <th >
+      JOIN DATE
+      </th>
+      <th>
+      LEAVE DATE
+    </th>
+  </tr>
+  <tr *ngFor="let emp of empList">
+      <td>{{emp.name}}</td>
+      <td>{{emp.joindate | date:'dd/MM/yyyy'}}</td>
+      <td>{{emp.leavedate | date:'dd/MM/yyyy'}}</td>
+  </tr>
+  <tr *ngIf="empList.length===0">Nothing to Show</tr>
+</table>
     
   </div>
 

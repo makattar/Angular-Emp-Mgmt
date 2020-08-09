@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import {DeletedemployeeService} from '../dashboardServices/deletedemployee.service';
 import { EmpbydeptService } from '../dashboardServices/empbydept.service';
 import {JoinedemployeeService} from '../dashboardServices/joinedemployee.service';
+import {DeletedemplistService} from '../dashboardServices/deletedemplist.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,10 +12,11 @@ import {JoinedemployeeService} from '../dashboardServices/joinedemployee.service
 export class DashboardComponent implements OnInit {
   temp = [];
   temp2=[];
+  empList=[];
   canShowData=false;
   canShowPie=false;
   canShowJoinChart=false;
-  constructor(private _dashdelser:DeletedemployeeService,private _empbydept:EmpbydeptService,private _joinedempser:JoinedemployeeService) { }
+  constructor(private _dashdelser:DeletedemployeeService,private _delemplistser:DeletedemplistService,private _empbydept:EmpbydeptService,private _joinedempser:JoinedemployeeService) { }
   //Deleted Employee data for plot
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -145,6 +147,11 @@ export class DashboardComponent implements OnInit {
     err=>{
       console.log(err)
     }
+    )
+    this._delemplistser.getDeletedEmployees().subscribe(
+      data=>{console.log(data)
+      this.empList=data},
+      err=>{console.log(err)}
     )
 
   }

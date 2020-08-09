@@ -20,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeListComponent implements OnInit {
   order:string='name';
+  fetchingDone=false;
   totalRecords:string;
   page:number=1;
   empList = [];
@@ -105,6 +106,7 @@ export class EmployeeListComponent implements OnInit {
     this._empListService.getEmpList(page).subscribe(data => {
       console.log(data.pageOfItems);
       this.pager = data.pager;
+      this.fetchingDone = true;
       //this.pageOfItems = x.pageOfItems;
       this.empList=data.pageOfItems;
   },
