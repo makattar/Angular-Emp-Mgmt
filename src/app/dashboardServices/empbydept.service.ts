@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmpbydeptService {
-  private _deletedemployeeUrl="http://mydbpg.herokuapp.com/dashboard/dept-wise-emp";
+  private _deletedemployeeUrl="https://mydbpg.herokuapp.com/dashboard/dept-wise-emp";
   constructor(private _http: HttpClient) { }
 
   getDataToPlot() {
