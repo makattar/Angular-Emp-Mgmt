@@ -4,6 +4,7 @@ import {User} from "src/app/user";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import {Router} from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +34,17 @@ export class EnrollmentService {
   logoutUser(){
     localStorage.removeItem('token')
     this._router.navigate(['/sign-in'])
+  }
+  isTokenExpired(token?: string): boolean {
+    if(!token) token = this.getToken();
+    if(!token) return true;
+    console.log("Token expires on : ",jwt_decode(token).exp)
+    if (jwt_decode(token).exp < Date.now() / 1000) {
+      localStorage.removeItem('token')
+      return true
+    }
+    return false
+
   }
   errorHandler(error: HttpErrorResponse) {
     return throwError(error)

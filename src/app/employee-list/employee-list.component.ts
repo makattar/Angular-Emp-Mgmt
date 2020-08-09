@@ -93,9 +93,12 @@ export class EmployeeListComponent implements OnInit {
     this._router.navigate(['/emp-details']);
   }
   onEdit(employee:Employee):void{
-    this.selectedEmployee=employee;
-    this._listToEditService.setDetail(this.selectedEmployee);
-    this._router.navigate(['/edit-employee']);
+    if(confirm("Are You sure to delete "+ employee.name)){
+      this.selectedEmployee=employee;
+      this._listToEditService.setDetail(this.selectedEmployee);
+      this._router.navigate(['/edit-employee']);
+    }
+    
   }
   private loadPage(page) {
     // get page of items from api
@@ -107,7 +110,7 @@ export class EmployeeListComponent implements OnInit {
   },
   err=>{
     if(err instanceof HttpErrorResponse){
-      if(err.status===401){
+      if(err.status===401 || err.status===500){
         this._router.navigate(['/sign-in'])
       }
     }
@@ -115,28 +118,32 @@ export class EmployeeListComponent implements OnInit {
 
 }
   onDelete(employee:Employee){
-    console.log("Delete button clicked , calling http request for delete from new service");
-    this.selectedEmployee=employee;
-    this.selectedEmployeeId=this.selectedEmployee.id
-    this._deleteEmpService.SetEmployeeToDelete(this.selectedEmployee);
-    this._deleteEmpService.deleteEmpById().subscribe(
-      res=>{
-        console.log(res)
-        if(res["status"]==="Success"){
-          console.log("You can navigate to Employee list component through success component");
-          //this._router.navigate(['success']);
-          for (let i=0;i<this.empList.length;++i){
-            if(this.empList[i].id==this.selectedEmployeeId){
-              this.empList.splice(i,1);
+    
+    if(confirm("Are You sure to delete "+ employee.name)){
+      console.log("Delete button clicked , calling http request for delete from new service");
+      this.selectedEmployee=employee;
+      this.selectedEmployeeId=this.selectedEmployee.id
+      this._deleteEmpService.SetEmployeeToDelete(this.selectedEmployee);
+      this._deleteEmpService.deleteEmpById().subscribe(
+        res=>{
+          console.log(res)
+          if(res["status"]==="Success"){
+            console.log("You can navigate to Employee list component through success component");
+            //this._router.navigate(['success']);
+            for (let i=0;i<this.empList.length;++i){
+              if(this.empList[i].id==this.selectedEmployeeId){
+                this.empList.splice(i,1);
+              }
             }
           }
-        }
-        else{
-          console.log("Failed,,,,,Retry again")
-        }
-      },
-      err=>{console.log(err)}
-    );
+          else{
+            console.log("Failed,,,,,Retry again")
+          }
+        },
+        err=>{console.log(err)}
+      );
+    }
+
   }
 
 }

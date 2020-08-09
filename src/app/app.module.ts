@@ -27,6 +27,10 @@ import {AuthorizationService} from './authorization.service';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { RimgtestComponent } from './rimgtest/rimgtest.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { DashdelchartComponent } from './dashdelchart/dashdelchart.component';
+import {DeletedemployeeService} from './dashboardServices/deletedemployee.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +46,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SuccessComponent,
     FailedComponent,
     AccessDeniedComponent,
-    RimgtestComponent
+    RimgtestComponent,
+    DashboardComponent,
+    DashdelchartComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +56,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     HttpClientModule,
     OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ChartsModule
   ],
-  providers: [EnrollmentService,EmplistService,ListToDispalyService,AuthorizationService,AuthGuard,ListToEditService,SigninGuardGuard,
+  providers: [EnrollmentService,EmplistService,DeletedemployeeService,ListToDispalyService,AuthorizationService,AuthGuard,ListToEditService,SigninGuardGuard,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,

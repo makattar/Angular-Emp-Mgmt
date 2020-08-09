@@ -5,8 +5,9 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmplistService {
-  page
   _empListUrl
+  page
+  //_empListUrl
   //private _empListUrl="http://localhost:3000/api/emp-list";
   //private _empListUrl="http://localhost:3000/employees/emp-list";
   //private _empListUrl="https://mydbpg.herokuapp.com/employees/emp-list";

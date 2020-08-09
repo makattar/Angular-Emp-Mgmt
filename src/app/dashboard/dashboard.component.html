@@ -1,0 +1,29 @@
+<div class="container">
+    <div *ngIf="this.canShowData" style="display: block ;background-color: #EBEBEB;">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+    <br>
+    <div *ngIf="this.canShowPie" style="display: block">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"></canvas>
+    </div>
+    <br>
+    <div *ngIf="this.canShowJoinChart" style="display: block;background-color: #EBEBEB;">
+      <canvas baseChart
+          [datasets]="joinedChartData"
+          [labels]="joinedChartLabels"
+          [options]="joinedChartOptions"
+          [legend]="joinedChartLegend"
+          [chartType]="joinedChartType"></canvas>
+    </div>
+    
+  </div>
+

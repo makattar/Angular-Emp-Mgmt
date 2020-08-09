@@ -5,6 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HomeComponent} from './home/home.component';
 import {EmployeeListComponent}from './employee-list/employee-list.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './auth.guard';
 import {SigninGuardGuard} from './signin-guard.guard';
 import {DisplayEmployeeDetailsComponent} from './display-employee-details/display-employee-details.component';
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path:'employee-list',
     component:EmployeeListComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'dashboard',
+    component:DashboardComponent,
     canActivate:[AuthGuard]
   },
   {path:'success',component:SuccessComponent},

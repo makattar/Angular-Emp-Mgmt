@@ -38,7 +38,7 @@ margin-bottom: 5%; padding:5%">
           <form #logInForm="ngForm" (ngSubmit)="loginUser()" class="form">
             <div class="form-group">
               <label>Username or email</label>
-              <input type="email" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control" placeholder="Username or email" required="true" ngModel name="userName" [(ngModel)]="loginUserModel.email">
+              <input type="email" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control" placeholder="Enter Username" required="true" ngModel name="userName" [(ngModel)]="loginUserModel.email">
               <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
             </div>
             <div class="form-group">
@@ -46,7 +46,7 @@ margin-bottom: 5%; padding:5%">
               <input type="password" class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter Password" ngModel name="password"  required [(ngModel)]="loginUserModel.password">
               <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
             </div>
-            <button [disabled]="logInForm.form.invalid" class="btn btn-dark" type="submit">LogIn</button>
+            <button [disabled]="logInForm.form.invalid" class="btn btn-dark"  type="submit">LogIn</button>
             <button class="btn btn-dark" style="margin-left: 5px;" routerLink="../sign-up" routerLinkActive="active">Register</button>
           </form>
         </div>

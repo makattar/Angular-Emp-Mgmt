@@ -10,6 +10,7 @@ import * as CryptoJS from 'crypto-js';
 export class SignInComponent implements OnInit {
  loginUserModel={email:'',password:''};
  public error = "";
+ public loading: boolean = false;
  encPassword:string="makattar"
  conversionEncryptedPassword:string;
  conversionDecryptedPassword:string;
@@ -18,6 +19,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
   loginUser(){
+    this.loading=true;
    //console.log(this.loginUserModel)
   this.conversionEncryptedPassword=CryptoJS.AES.encrypt(this.loginUserModel.password.trim(),this.encPassword.trim()).toString();
   console.log("Encrypted password is :",this.conversionEncryptedPassword); 
