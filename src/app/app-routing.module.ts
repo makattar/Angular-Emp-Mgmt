@@ -33,7 +33,11 @@ const routes: Routes = [
   {
     path:'dashboard',
     component:DashboardComponent,
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard,AuthorizationGuard],
+    data: {
+      allowedRoles: ['Human Resource']
+    }
+
   },
   {path:'success',component:SuccessComponent},
   {path:'failed',component:FailedComponent},

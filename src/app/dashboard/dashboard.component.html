@@ -1,5 +1,6 @@
 <div class="container">
-    <div *ngIf="this.canShowData" style="display: block ;background-color: #EBEBEB;">
+  <br>
+    <div *ngIf="this.canShowData" class="chart-container" style="position: relative; height:40vh; width:80vw; display: block ;background-color: #EBEBEB;">
       <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
@@ -9,14 +10,15 @@
       </canvas>
     </div>
     <br>
-    <div *ngIf="this.canShowPie" style="display: block">
+    <div *ngIf="this.canShowPie" class="chart-container" style="position: relative; height:40vh; width:80vw; display: block ;background-color: #EBEBEB;">
       <canvas baseChart
               [data]="pieChartData"
               [labels]="pieChartLabels"
-              [chartType]="pieChartType"></canvas>
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"></canvas>
     </div>
     <br>
-    <div *ngIf="this.canShowJoinChart" style="display: block;background-color: #EBEBEB;">
+    <div *ngIf="this.canShowJoinChart" class="chart-container" style="position: relative; height:40vh; width:80vw; display: block ;background-color: #EBEBEB;">
       <canvas baseChart
           [datasets]="joinedChartData"
           [labels]="joinedChartLabels"

@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true,
+    maintainAspectRatio:false,
     title: {
       display: true,
       text: ['Number Of Employees Exited','With respect to date'],
@@ -49,10 +50,21 @@ export class DashboardComponent implements OnInit {
   public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
   public pieChartData = [120, 150, 180, 90];
   public pieChartType = 'pie';
+  public pieChartOptions={
+    scaleShowVerticalLines: true,
+    responsive: true,
+    maintainAspectRatio:false,
+    title: {
+      display: true,
+      text: ['Employees With Respect ','To Department'],
+      fontFamily:'Helvetica Neue'
+  } 
+  }
   //Joined employee data for plot
   public joinedChartOptions = {
     scaleShowVerticalLines: true,
     responsive: true,
+    maintainAspectRatio:false,
     title: {
       display: true,
       text: ['Number Of Employees Joined','With respect to date'],
