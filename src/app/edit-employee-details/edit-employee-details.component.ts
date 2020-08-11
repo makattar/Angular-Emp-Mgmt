@@ -14,6 +14,7 @@ import {DepartmentService} from '../department.service';
   styleUrls: ['./edit-employee-details.component.css']
 })
 export class EditEmployeeDetailsComponent implements OnInit {
+  today
   employeeToEdit:Employee;
   //employeeBirthDate:Date;
   //Employee  select Component
@@ -29,6 +30,7 @@ export class EditEmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.today=new Date();
     this.employeeToEdit=this._listToEditService.getDetail();
     //this.employeeBirthDate=this.employeeToEdit.DOB;//new DatePipe('en-US').transform(this.employeeToEdit.DOB,'dd/MM/yyyy');
     console.log(this.employeeToEdit);

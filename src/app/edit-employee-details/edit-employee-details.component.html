@@ -39,7 +39,7 @@
       
             <div class="form-group">
                 <label>Date Of Birth</label>
-                <input type="date"  #DOB="ngModel" class="form-control" [class.is-invalid]="DOB.invalid && DOB.touched" placeholder="Enter Date OF Birth" ngModel name="DOB" [(ngModel)]="employeeToEdit.dob"  required>
+                <input type="date"  #DOB="ngModel" class="form-control" [class.is-invalid]="DOB.invalid && DOB.touched" placeholder="Enter Date OF Birth" ngModel name="DOB" [(ngModel)]="employeeToEdit.dob"  max="{{today | date:'yyyy-MM-dd'}}" required>
                 <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">Date Of Birth is required</small>
               </div>
       
@@ -78,7 +78,7 @@
   
             <div class="form-group">
               <label>Date Of Joining</label>
-              <input type="date"  #DOJ="ngModel" class="form-control" [class.is-invalid]="DOJ.invalid && DOJ.touched" placeholder="Enter Date OF Joining" ngModel name="DOJ" [(ngModel)]="employeeToEdit.doj"  required>
+              <input type="date"  #DOJ="ngModel" class="form-control" [class.is-invalid]="DOJ.invalid && DOJ.touched" placeholder="Enter Date OF Joining" ngModel name="DOJ" [(ngModel)]="employeeToEdit.doj" max="{{today | date:'yyyy-MM-dd'}}" min="{{employeeToEdit.dob | date:'yyyy-MM-dd'}}"  required>
               <small class="text-danger" [class.d-none]="DOJ.valid || DOJ.untouched">Date Of Joining is required</small>
           </div>
               

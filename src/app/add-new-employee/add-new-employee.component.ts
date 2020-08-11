@@ -12,6 +12,7 @@ import {DepartmentService} from '../department.service';
   styleUrls: ['./add-new-employee.component.css']
 })
 export class AddNewEmployeeComponent implements OnInit {
+  today
   filetest
   selectedFile=null;
   employeeToAdd:Employee;
@@ -23,6 +24,7 @@ export class AddNewEmployeeComponent implements OnInit {
   constructor(private _addEmpService:AddEmpService,private _router:Router,private _jobtypeService:JobtypeService,private _departmentService:DepartmentService) { }
 
   ngOnInit(): void {
+    this.today=new Date();
     this.employeeToAdd=new Employee(null,null,null,null,null,null,"default","default",null,null);
     this.departments=this._departmentService.getNormalDept();
     this.jobTypesArray=this._jobtypeService.getNormalJobtype();
