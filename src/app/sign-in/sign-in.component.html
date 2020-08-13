@@ -37,7 +37,7 @@ margin-bottom: 5%; padding:5%">
         <div class="card-body">
           <form #logInForm="ngForm" (ngSubmit)="loginUser()" class="form">
             <div class="form-group">
-              <label>Username or email</label>
+              <label>Username</label>
               <input type="email" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control" placeholder="Enter Username" required="true" ngModel name="userName" [(ngModel)]="loginUserModel.email">
               <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
             </div>
