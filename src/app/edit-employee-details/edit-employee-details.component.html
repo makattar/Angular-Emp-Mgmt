@@ -23,8 +23,10 @@
             
             <div class="form-group">
               <label>Name</label>
-              <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter Name" required ngModel name="name" [(ngModel)]="employeeToEdit.name">
+              <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter Name" required ngModel name="name" [(ngModel)]="employeeToEdit.name" minlength="7" maxlength="30" pattern="^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,})$" >
               <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+              <small class="text-danger" *ngIf="name.errors.minlength">Atleast 7 characters long</small>
+              <small class="text-danger" *ngIf="name.errors.pattern">Name should atleast 7 characters long and should not contain digits,special characters, trailing spaces</small>
             </div>
             
       
