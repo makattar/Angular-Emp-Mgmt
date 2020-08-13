@@ -99,7 +99,10 @@ margin-bottom: 5%; padding:5%">
             <div class="form-group">
               <label>Name</label>
               <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter Name" required ngModel name="name" [(ngModel)]="userModel.name">
-              <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+              <div *ngIf="name.errors && (name.invalid || name.touched)">
+            <small class="text-danger" *ngIf="name.errors.required && name.touched">Name is required</small>
+            <small class="text-danger" *ngIf="name.errors.pattern">Name should contain atleast 7 characters and not contain digits  </small>
+          </div>
             </div>
             
       
@@ -133,14 +136,14 @@ margin-bottom: 5%; padding:5%">
       
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" #username="ngModel" class="form-control" [class.is-invalid]="username.invalid && username.touched" placeholder="Enter Username" ngModel name="userName" [(ngModel)]="userModel.username" required>
-                <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
+                <input type="text" #username="ngModel" class="form-control" [class.is-invalid]="username.invalid && username.touched" placeholder="Enter Username" ngModel name="userName" [(ngModel)]="userModel.username" required minlength="2" maxlength="15">
+                <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required and minimum length is 2</small>
               </div>
       
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter Password" ngModel name="password" [(ngModel)]="userModel.password" required>
-                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+                <input type="password" class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter Password" ngModel name="password" [(ngModel)]="userModel.password" required minlength="2" maxlength="15" >
+                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required and minimum length is 2</small>
               </div>
               
             <button [disabled]="userForm.form.invalid || departmentHasError" class="btn btn-primary" type="submit">Register</button>
