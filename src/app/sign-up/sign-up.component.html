@@ -98,7 +98,7 @@ margin-bottom: 5%; padding:5%">
             </div>
             <div class="form-group">
               <label>Name</label>
-              <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter Name" required ngModel name="name" [(ngModel)]="userModel.name" minlength="7" maxlength="30" pattern="^[a-zA-Z]{1,}[a-zA-Z ]{6,}(?!.*[$.&_#@+()/*"':;!?0-9}{=°^¥€¢£~`|•√π÷×¶∆✓™©%®<>])">
+              <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" placeholder="Enter Name" required ngModel name="name" [(ngModel)]="userModel.name" minlength="7" maxlength="30" pattern="^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,})$">
               <div *ngIf="name.errors && (name.invalid || name.touched)">
             <small class="text-danger" *ngIf="name.errors.required && name.touched">Name is required</small>
             <small class="text-danger" *ngIf="name.errors.pattern">Name should  atleast 7 characters long and not contain digits, special characters,trailing spaces</small>
